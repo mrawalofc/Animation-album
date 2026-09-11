@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Album — Photo Slideshow</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <span class="eyebrow">PHOTO ALBUM</span>
+        <h1>Neon <span>Album</span></h1>
+      </div>
+      <div class="stats" aria-live="polite">
+        <strong id="photoCount">0</strong>
+        <span>photos</span>
+      </div>
+    </header>
+
+    <section class="upload-card" id="dropZone">
+      <div class="upload-icon">↥</div>
+      <h2>Drop your memories here</h2>
+      <p>Upload JPG, PNG, WEBP, GIF or multiple images at once.</p>
+      <label class="upload-btn">
+        Choose Photos
+        <input id="fileInput" type="file" accept="image/*" multiple hidden>
+      </label>
+      <span class="drop-hint">or drag & drop</span>
+    </section>
+
+    <section class="settings-bar">
+      <div class="setting">
+        <label for="interval">Slideshow speed</label>
+        <select id="interval">
+          <option value="2000">2 seconds</option>
+          <option value="3500" selected>3.5 seconds</option>
+          <option value="5000">5 seconds</option>
+          <option value="8000">8 seconds</option>
+        </select>
+      </div>
+      <div class="setting">
+        <label for="transition">Transition</label>
+        <select id="transition">
+          <option value="crossfade" selected>Dual crossfade</option>
+          <option value="zoom">Zoom + fade</option>
+          <option value="slide">Slide</option>
+        </select>
+      </div>
+      <button class="play-btn" id="playBtn" disabled>▶ Start Slideshow</button>
+      <button class="clear-btn" id="clearBtn" disabled>Clear</button>
+    </section>
+
+    <section class="album-section">
+      <div class="section-title">
+        <h2>Your Album</h2>
+        <span id="emptyLabel">Waiting for photos…</span>
+      </div>
+      <div class="album-grid" id="albumGrid"></div>
+    </section>
+  </main>
+
+  <div class="slideshow" id="slideshow" aria-hidden="true">
+    <div class="slide-layer layer-a"><img id="slideA" alt=""></div>
+    <div class="slide-layer layer-b"><img id="slideB" alt=""></div>
+    <div class="slide-shade"></div>
+
+    <button class="close-slide" id="closeSlide" aria-label="Close slideshow">×</button>
+    <button class="nav prev" id="prevSlide" aria-label="Previous photo">‹</button>
+    <button class="nav next" id="nextSlide" aria-label="Next photo">›</button>
+
+    <div class="slide-info">
+      <span id="slideNumber">01 / 01</span>
+      <span class="slide-title">MEMORIES</span>
+    </div>
+    <div class="progress"><span id="progressBar"></span></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
