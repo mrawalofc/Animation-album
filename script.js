@@ -158,3 +158,14 @@ document.addEventListener("keydown", e => {
 });
 
 renderAlbum();
+
+
+// Ultimate Edition customization layer
+const bgSel=document.getElementById("background"), colorSel=document.getElementById("colorMode"), textSel=document.getElementById("textAnimation"), emojiSel=document.getElementById("emoji");
+const particlesToggle=document.getElementById("particlesToggle"), autoColor=document.getElementById("autoColor"), titleInput=document.getElementById("albumTitle"), subtitleInput=document.getElementById("albumSubtitle"), applyText=document.getElementById("applyText"), slideTitle=document.getElementById("slideTitle"), slideSubtitle=document.getElementById("slideSubtitle"), particleBox=document.getElementById("particles"), emojiBox=document.getElementById("emojiRain");
+function applyUltimate(){document.body.dataset.bg=bgSel.value;document.body.classList.remove("color-rainbow","color-violet","color-cyan","color-fire");if(colorSel.value!=="none")document.body.classList.add("color-"+colorSel.value);slideshow.classList.remove("crossfade","zoom","slide","flip","blur","rotate","glitch","kenburns");slideshow.classList.add(transitionSelect.value);slideshow.classList.remove("text-type","text-glow","text-float","text-bounce","text-fade");if(textSel.value!=="none")slideshow.classList.add("text-"+textSel.value);if(slideshow.classList.contains("open"))spawnEmojis();}
+function makeParticles(){particleBox.innerHTML="";if(!particlesToggle.checked)return;for(let i=0;i<45;i++){const p=document.createElement("i");p.className="particle";p.style.left=Math.random()*100+"%";p.style.animationDelay=-Math.random()*8+"s";p.style.animationDuration=5+Math.random()*8+"s";particleBox.appendChild(p)}}
+let emojiLoop;function spawnEmojis(){clearInterval(emojiLoop);emojiBox.innerHTML="";const sets={hearts:["💕","💗","💖","💘"],sparkles:["✨","⭐","✦"],love:["❤️","💝","💞"],stars:["⭐","🌟","✨"],mix:["💖","✨","🌸","💕","⭐"]};const set=sets[emojiSel.value];if(!set)return;emojiLoop=setInterval(()=>{const e=document.createElement("span");e.className="emoji";e.textContent=set[Math.floor(Math.random()*set.length)];e.style.left=Math.random()*100+"%";e.style.top="-30px";e.style.animationDuration=3+Math.random()*4+"s";emojiBox.appendChild(e);setTimeout(()=>e.remove(),7500)},350)}
+function applyTextUltimate(){slideTitle.textContent=titleInput.value||"Moments That Matter";slideSubtitle.textContent=subtitleInput.value||"A journey of a thousand memories ♥";applyUltimate()}
+[bgSel,colorSel,textSel,emojiSel,particlesToggle].forEach(el=>el&&el.addEventListener("change",()=>{applyUltimate();makeParticles()}));applyText.addEventListener("click",applyTextUltimate);makeParticles();applyUltimate();
+const oldOpen=openSlideshow;openSlideshow=function(i=0){oldOpen(i);applyUltimate();spawnEmojis()};const oldClose=closeSlideshowFn;closeSlideshowFn=function(){clearInterval(emojiLoop);emojiBox.innerHTML="";oldClose()};

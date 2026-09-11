@@ -33,27 +33,16 @@
       <span class="drop-hint">or drag & drop</span>
     </section>
 
-    <section class="settings-bar">
-      <div class="setting">
-        <label for="interval">Slideshow speed</label>
-        <select id="interval">
-          <option value="2000">2 seconds</option>
-          <option value="3500" selected>3.5 seconds</option>
-          <option value="5000">5 seconds</option>
-          <option value="8000">8 seconds</option>
-        </select>
-      </div>
-      <div class="setting">
-        <label for="transition">Transition</label>
-        <select id="transition">
-          <option value="crossfade" selected>Dual crossfade</option>
-          <option value="zoom">Zoom + fade</option>
-          <option value="slide">Slide</option>
-        </select>
-      </div>
-      <button class="play-btn" id="playBtn" disabled>▶ Start Slideshow</button>
-      <button class="clear-btn" id="clearBtn" disabled>Clear</button>
+    <section class="settings-bar studio">
+      <div class="setting"><label>Speed</label><select id="interval"><option value="1800">1.8s</option><option value="3000" selected>3s</option><option value="4500">4.5s</option><option value="7000">7s</option></select></div>
+      <div class="setting"><label>Animation</label><select id="transition"><option value="crossfade">Dual Crossfade</option><option value="zoom">Cinematic Zoom</option><option value="slide">Smooth Slide</option><option value="flip">3D Flip</option><option value="blur">Dreamy Blur</option><option value="rotate">Rotate Fade</option><option value="glitch">Glitch Pulse</option><option value="kenburns">Ken Burns</option></select></div>
+      <div class="setting"><label>Background</label><select id="background"><option value="aurora">Aurora Glow</option><option value="midnight">Midnight Nebula</option><option value="sunset">Cyber Sunset</option><option value="ocean">Deep Ocean</option><option value="galaxy">Purple Galaxy</option><option value="glass">Crystal Glass</option><option value="minimal">Minimal Black</option></select></div>
+      <div class="setting"><label>Color animation</label><select id="colorMode"><option value="rainbow">Rainbow Flow</option><option value="violet">Violet Pulse</option><option value="cyan">Cyan Pulse</option><option value="fire">Fire Glow</option><option value="none">Static</option></select></div>
+      <div class="setting"><label>Text animation</label><select id="textAnimation"><option value="type">Typewriter</option><option value="glow">Neon Glow</option><option value="float">Floating</option><option value="bounce">Bounce</option><option value="fade">Soft Fade</option><option value="none">Static</option></select></div>
+      <div class="setting"><label>Emoji</label><select id="emoji"><option value="none">None</option><option value="hearts">💕 Hearts</option><option value="sparkles">✨ Sparkles</option><option value="love">❤️ Love</option><option value="stars">⭐ Stars</option><option value="mix">💖✨🌸 Mix</option></select></div>
+      <button class="play-btn" id="playBtn" disabled>▶ Start Full Slideshow</button><button class="clear-btn" id="clearBtn" disabled>Clear</button>
     </section>
+    <section class="text-bar"><input id="albumTitle" value="Moments That Matter" maxlength="42"><input id="albumSubtitle" value="A journey of a thousand memories ♥" maxlength="70"><button id="applyText">Apply Text</button><label class="check">Particles <input id="particlesToggle" type="checkbox" checked></label><label class="check">Auto color <input id="autoColor" type="checkbox" checked></label></section>
 
     <section class="album-section">
       <div class="section-title">
@@ -64,10 +53,11 @@
     </section>
   </main>
 
+  <div id="particles"></div><div id="emojiRain"></div>
   <div class="slideshow" id="slideshow" aria-hidden="true">
     <div class="slide-layer layer-a"><img id="slideA" alt=""></div>
     <div class="slide-layer layer-b"><img id="slideB" alt=""></div>
-    <div class="slide-shade"></div>
+    <div class="slide-shade"></div><div class="slide-copy"><span>NEON ALBUM</span><h2 id="slideTitle">Moments That Matter</h2><p id="slideSubtitle">A journey of a thousand memories ♥</p></div>
 
     <button class="close-slide" id="closeSlide" aria-label="Close slideshow">×</button>
     <button class="nav prev" id="prevSlide" aria-label="Previous photo">‹</button>
